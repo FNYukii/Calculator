@@ -1,0 +1,52 @@
+.calculator {
+  max-width: 520px;          /* calculatorの横幅を設定。これでキーが綺麗に並ぶ*/
+  margin: 0 auto;            /*calculatorが画面の中央上部に表にされるように設定*/
+  background-color: gray;
+  border-radius: 10px;
+}
+.title {
+  margin: 10px 220px;  /*タイトルが画面上部中央に来るようにmarginを調整*/
+  font-size: 40px;
+  text-decoration: none; /*リンクに標準で表示される下線を非表示*/
+  color: skyblue;
+}
+.title:hover {
+  color: lime;
+  border-bottom: 2px solid lime;  /*borderの下部分だけを表示*/
+  padding-bottom: 1px;             /*文字とborder-botttomとの間隔を調整*/
+}
+
+.display {
+  width: 430px;
+  height: 40px;
+  margin: 10px auto;
+
+  font-size: 30px;
+  color: white;
+  background-color: rgb(78, 78, 78);
+  border-radius: 10px;
+}
+.keys {
+  flex-wrap: wrap;  /*keyたちを横並びで表示*/
+  display: flex;    /*右端に達したら下の行に折り返して表示*/
+}
+.keys div{          /*keys内のdivを対象にスタイルを設定*/
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+
+  color: skyblue;
+  border: 5px solid skyblue;
+  background-color: transparent;
+  border-radius: 10px;
+
+  text-align: center;  
+  line-height: 100px;
+  font-size: 70px;
+
+  cursor: pointer;
+}
+.keys div:hover {
+  color: lime;
+  border: 5px solid lime;
+}
