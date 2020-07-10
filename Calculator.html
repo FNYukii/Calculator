@@ -1,8 +1,9 @@
+<!-- calculatorプロトタイプ 扱える数字は一桁だけ -->
 <!DOCTYPE html>
 <html lang="ja">
   <head>
       <meta charset="UTF-8">
-      <title>電卓</title>
+      <title>電卓-01 プラスとマイナス</title>
       <style>
         .calculator {
           max-width: 372px;          /* calculatorの横幅を設定。これでキーが綺麗に並ぶ*/
@@ -57,7 +58,7 @@
     <!-- 電卓本体 -->
     <div class="calculator">   
 
-      <a href="calculator.html">
+      <a href="calculator-01 PlusAndMinus.html">
         <h1>Calculator</h1>
       </a>
 
@@ -76,20 +77,23 @@
         <div class="key8">8</div>
         <div class="key9">9</div>
         <div class="keyPlus">+</div>
-        <div class="key0">0</div>
+        <div class="keyMinus">-</div>
         <div class="keyEqual">＝</div>
       </div>
 
     </div>
     
     <script>
-      let num1 = 0;  //1番目の整数
-      let num2 = 0;  //2番目の整数
-      let sum = 0;   //1番目と2番目の整数の合計
 
-      let count = 1; //現在何番目の整数を編集中なのか表す
+      //変数宣言
+      let num1 = 0;      //1番目の整数
+      let num2 = 0;      //2番目の整数
+      let sum = 0;       //1番目と2番目の整数の合計
 
+      let numNumber = 1; //現在何番目の整数を編集中なのか表す。初期はもちろん1番目
+      let sign;          //演算子を表す。加算なら1、減算なら2を後ほど代入する
 
+      //定数宣言
       const display = document.querySelector('.display');
 
       const key1 = document.querySelector('.key1');
@@ -101,23 +105,24 @@
       const key7 = document.querySelector('.key7');
       const key8 = document.querySelector('.key8');
       const key9 = document.querySelector('.key9'); 
-      const key0 = document.querySelector('.key0');
-
+      
       const keyPlus = document.querySelector('.keyPlus');
+      const keyMinus = document.querySelector('.keyMinus');
       const keyEqual = document.querySelector('.keyEqual');
 
+      //数字キーの関数を実装
       function add1() {            //1番のキーが押されたときに実行する関数
         display.textContent += 1;    //ディスプレイに「1」とテキストを追加
-        if ( count === 1 ) {         //もし、現在1番目の整数「num1」を編集中なら
+        if ( numNumber === 1 ) {     //もし、現在1番目の整数「num1」を編集中なら
           num1++;                      //num1に1を足す
         } else {                     //もし、現在2番目の整数「num2」を編集中なら          
-        num2++;                        //num2に1を足す
+          num2++;                        //num2に1を足す
         }
       }
 
       function add2() {
         display.textContent += 2;
-        if ( count === 1 ) {
+        if ( numNumber === 1 ) {
           num1 += 2;           
         } else {            
           num2 += 2;             
@@ -126,7 +131,7 @@
 
       function add3() {
         display.textContent += 3;
-        if ( count === 1 ) {
+        if ( numNumber === 1 ) {
           num1 += 3;        
         } else {            
           num2 += 3;        
@@ -135,7 +140,7 @@
 
       function add4() {
         display.textContent += 4;
-        if ( count === 1 ) {
+        if ( numNumber === 1 ) {
           num1 += 4;        
         } else {            
           num2 += 4;        
@@ -144,7 +149,7 @@
 
       function add5() {
         display.textContent += 5;
-        if ( count === 1 ) {
+        if ( numNumber === 1 ) {
           num1 += 5;        
         } else {            
           num2 += 5;        
@@ -153,7 +158,7 @@
 
       function add6() {
         display.textContent += 6;
-        if ( count === 1 ) {
+        if ( numNumber === 1 ) {
           num1 += 6;        
         } else {            
           num2 += 6;        
@@ -162,7 +167,7 @@
 
       function add7() {
         display.textContent += 7;
-        if ( count === 1 ) {
+        if ( numNumber === 1 ) {
           num1 += 7;        
         } else {            
           num2 += 7;        
@@ -171,7 +176,7 @@
 
       function add8() {
         display.textContent += 8;
-        if ( count === 1 ) {
+        if ( numNumber === 1 ) {
           num1 += 8;        
         } else {            
           num2 += 8;        
@@ -180,28 +185,40 @@
 
       function add9() {
         display.textContent += 9;
-        if ( count === 1 ) {
+        if ( numNumber === 1 ) {
           num1 += 9;        
         } else {            
           num2 += 9;        
         }
       } 
 
-      function add0() {
-        display.textContent += 0;
-        
-      }
-
+      //演算子・等号キーの関数を実装
       function addPlus() {
         display.textContent += '+';
-        count++;
+        numNumber++;
+        sign = 1;
+      }
+
+      function addMinus() {
+        display.textContent += '-';
+        numNumber++;
+        sign = 2;
       }
 
       function addEqual() {
-        sum = num1 + num2;
+        if ( sign === 1 ) {   //sign = 1なら加算、sign = 2なら減算を行う
+          sum = num1 + num2;
+        } else {
+          sum = num1 - num2;
+        }
         display.textContent += '=' + sum;
       }
 
+
+
+
+
+      //各キーにそれぞれのEventListenerを追加
       key1.addEventListener('click', add1);
       key2.addEventListener('click', add2);
       key3.addEventListener('click', add3);
@@ -211,12 +228,10 @@
       key7.addEventListener('click', add7);
       key8.addEventListener('click', add8);
       key9.addEventListener('click', add9);
-      key0.addEventListener('click', add0);
 
       keyPlus.addEventListener('click', addPlus);
+      keyMinus.addEventListener('click', addMinus);
       keyEqual.addEventListener('click', addEqual);
-
-
 
     </script>
   </body>
