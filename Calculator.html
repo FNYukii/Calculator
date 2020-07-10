@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+      <meta charset="UTF-8">
+      <title>電卓</title>
+      <style>
+        .calculator {
+          max-width: 372px;          /* calculatorの横幅を設定。これでキーが綺麗に並ぶ*/
+          margin: 0 auto;            /*calculatorが画面の中央上部に表にされるように設定*/
+          background-color: gray;
+        }
+        a {
+          text-decoration: none;
+          text-align: center;
+          color: skyblue;
+        }
+        a:hover {
+          color: lime;
+        }
+        .display {
+          width: 300px;
+          height: 40px;
+          margin: 10px auto;
+
+          font-size: 30px;
+          color: white;
+          background-color: rgb(78, 78, 78);
+        }
+        .keys {
+          flex-wrap: wrap;  /*keyたちを横並びで表示*/
+          display: flex;    /*右端に達したら下の行に折り返して表示*/
+        }
+        .keys div{          /*keys内のdivを対象にスタイルを設定*/
+          width: 100px;
+          height: 100px;
+          margin: 10px;
+
+          color: skyblue;
+          border: 2px solid skyblue;
+          background-color: transparent;
+          border-radius: 10px;
+
+          text-align: center;  
+          line-height: 100px;
+          font-size: 70px;
+
+          cursor: pointer;
+        }
+        .keys div:hover {
+          color: lime;
+          border: 2px solid lime;
+        }
+      </style>
+  </head>
+  <body>
+
+    <!-- 電卓本体 -->
+    <div class="calculator">   
+
+      <a href="calculator.html">
+        <h1>Calculator</h1>
+      </a>
+
+      <!-- 数字表示ディスプレイ-->
+      <p class="display"></p>
+
+      <!-- 12個のキー -->
+      <div  class="keys">
+        <div class="key1">1</div>
+        <div class="key2">2</div>
+        <div class="key3">3</div>
+        <div class="key4">4</div>
+        <div class="key5">5</div>
+        <div class="key6">6</div>
+        <div class="key7">7</div>
+        <div class="key8">8</div>
+        <div class="key9">9</div>
+        <div class="keyPlus">+</div>
+        <div class="key0">0</div>
+        <div class="keyEqual">＝</div>
+      </div>
+
+    </div>
+    
+    <script>
+      let num1 = 0;  //1番目の整数
+      let num2 = 0;  //2番目の整数
+      let sum = 0;   //1番目と2番目の整数の合計
+
+      let count = 1; //現在何番目の整数を編集中なのか表す
+
+
+      const display = document.querySelector('.display');
+
+      const key1 = document.querySelector('.key1');
+      const key2 = document.querySelector('.key2');
+      const key3 = document.querySelector('.key3');
+      const key4 = document.querySelector('.key4');
+      const key5 = document.querySelector('.key5');
+      const key6 = document.querySelector('.key6');
+      const key7 = document.querySelector('.key7');
+      const key8 = document.querySelector('.key8');
+      const key9 = document.querySelector('.key9'); 
+      const key0 = document.querySelector('.key0');
+
+      const keyPlus = document.querySelector('.keyPlus');
+      const keyEqual = document.querySelector('.keyEqual');
+
+      function add1() {            //1番のキーが押されたときに実行する関数
+        display.textContent += 1;    //ディスプレイに「1」とテキストを追加
+        if ( count === 1 ) {         //もし、現在1番目の整数「num1」を編集中なら
+          num1++;                      //num1に1を足す
+        } else {                     //もし、現在2番目の整数「num2」を編集中なら          
+        num2++;                        //num2に1を足す
+        }
+      }
+
+      function add2() {
+        display.textContent += 2;
+        if ( count === 1 ) {
+          num1 += 2;           
+        } else {            
+          num2 += 2;             
+        }
+      }
+
+      function add3() {
+        display.textContent += 3;
+        if ( count === 1 ) {
+          num1 += 3;        
+        } else {            
+          num2 += 3;        
+        }
+      }
+
+      function add4() {
+        display.textContent += 4;
+        if ( count === 1 ) {
+          num1 += 4;        
+        } else {            
+          num2 += 4;        
+        }
+      }
+
+      function add5() {
+        display.textContent += 5;
+        if ( count === 1 ) {
+          num1 += 5;        
+        } else {            
+          num2 += 5;        
+        }
+      }
+
+      function add6() {
+        display.textContent += 6;
+        if ( count === 1 ) {
+          num1 += 6;        
+        } else {            
+          num2 += 6;        
+        }
+      }
+
+      function add7() {
+        display.textContent += 7;
+        if ( count === 1 ) {
+          num1 += 7;        
+        } else {            
+          num2 += 7;        
+        }
+      }
+
+      function add8() {
+        display.textContent += 8;
+        if ( count === 1 ) {
+          num1 += 8;        
+        } else {            
+          num2 += 8;        
+        }
+      }
+
+      function add9() {
+        display.textContent += 9;
+        if ( count === 1 ) {
+          num1 += 9;        
+        } else {            
+          num2 += 9;        
+        }
+      } 
+
+      function add0() {
+        display.textContent += 0;
+        
+      }
+
+      function addPlus() {
+        display.textContent += '+';
+        count++;
+      }
+
+      function addEqual() {
+        sum = num1 + num2;
+        display.textContent += '=' + sum;
+      }
+
+      key1.addEventListener('click', add1);
+      key2.addEventListener('click', add2);
+      key3.addEventListener('click', add3);
+      key4.addEventListener('click', add4);
+      key5.addEventListener('click', add5);
+      key6.addEventListener('click', add6);
+      key7.addEventListener('click', add7);
+      key8.addEventListener('click', add8);
+      key9.addEventListener('click', add9);
+      key0.addEventListener('click', add0);
+
+      keyPlus.addEventListener('click', addPlus);
+      keyEqual.addEventListener('click', addEqual);
+
+
+
+    </script>
+  </body>
+</html>
