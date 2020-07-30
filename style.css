@@ -50,3 +50,7 @@
   color: lime;
   border: 5px solid lime;
 }
+.keys div:active {
+  color: red;
+  border: 5px solid red;
+}
