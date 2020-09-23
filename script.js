@@ -83,13 +83,70 @@ function setupOperator(opIndex){
 }
 
 function executeCalc(){
-  console.log(numbers);
-  console.log(inputOperators);
-  console.log(operatorLevel);
-
   
+  while(inputOperators.length > 0){
+
+    let heightOperator = searchHeightOperatorLevel();
+
+    // 計算をする演算子のインデックス
+    let calcIndex = operatorLevel.indexOf(heightOperator);
+    if(calcIndex < 0){
+      break;
+    }
+    let num1 = numbers[calcIndex];
+    let num2 = numbers[calcIndex + 1];
+    let result = calc(num1, num2, inputOperators[calcIndex]);
+
+    // 計算した結果をnumbersに書き込みます
+    numbers.splice(calcIndex + 1, 1);
+    numbers[calcIndex] = result;
+    
+
+    operatorLevel.splice(calcIndex, 1);
+    operators.splice(calcIndex, 1);
+  }
+
+
+  let result = numbers[0];
+  
+  numbers = [];
+
+  return result;
 }
 
+
+// 二つの数の計算をします
+function calc(num1, num2, op){
+  console.log("演算子:" + op);
+  switch(op) {
+    case '+':
+      return num1 + num2;
+    case '-':
+      return num1 - num2;
+    case '*':
+      return num1 * num2;
+    case '/': 
+      return num1 / num2;
+  }
+
+}
+// 最も優先度の高い演算子を探しそのレベルを返します
+function searchHeightOperatorLevel(){
+
+  let max = -1;
+  for(let i = 0; i < inputOperators.length; i ++){
+    if(max < operatorLevel[i]){
+      max = operatorLevel[i];
+    }
+  }
+  console.log("max:" + max);
+  return max;
+}
+
+function executeAndDisplay(){
+  let result = executeCalc();
+  display.textContent = String(result);
+}
 
 for(let i = 0; i < numberKeys.length; i ++){
   numberKeys[i].addEventListener('click', setupNumber(i));
@@ -98,8 +155,5 @@ for(let i = 0; i < numberKeys.length; i ++){
 for(let i = 0; i < operatorKeys.length; i ++){
   operatorKeys[i].addEventListener('click', setupOperator(i));
 }
-/*keyPlus.addEventListener('click', plus);
-keyMinus.addEventListener('click', minus);
-keyMultiply.addEventListener('click', multiply);
-keyDivide.addEventListener('click', divide);*/
-keyEqual.addEventListener('click', executeCalc);
+
+keyEqual.addEventListener('click', executeAndDisplay);
