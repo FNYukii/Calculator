@@ -151,6 +151,15 @@ function executeAndDisplay(){
   display.textContent = String(result);
 }
 
+function allClear(){
+  numbers = [];
+  numberIndex = 0;
+  operatorLevel = [];
+  operatorWeight = 1;
+  inputOperators = [];
+  display.textContent = '';
+}
+
 for(let i = 0; i < numberKeys.length; i ++){
   numberKeys[i].addEventListener('click', setupNumber(i));
 }
@@ -160,3 +169,4 @@ for(let i = 0; i < operatorKeys.length; i ++){
 }
 
 keyEqual.addEventListener('click', executeAndDisplay);
+keyAllClear.addEventListener('click', allClear);
