@@ -19,7 +19,6 @@ body {
   /* border-bottom: 2px solid #43beee; */
   padding-bottom: 1px;             /*文字とborder-botttomとの間隔を調整*/
 }
-
 .display {
   width: 430px;
   height: 40px;
@@ -43,11 +42,19 @@ body {
   font-size: 70px;
   cursor: pointer;
 }
+.specialKey:hover,.numberKey:hover,.operatorKey:hover {
+  border: 2px solid #fff;
+}
 .specialKey {
   color: #fff;
   border: 2px solid #aaa;
   background-color: #f8995a;
   border-radius: 10px;
+}
+.specialKey:active {
+  color: #f8995a;
+  background-color: #fff;
+  border: 2px solid #f8995a;
 }
 .numberKey {
   color: #fff;
@@ -55,17 +62,19 @@ body {
   background-color: #83d8fa;
   border-radius: 10px;
 }
+.numberKey:active {
+  color: #83d8fa;
+  background-color: #fff;
+  border: 2px solid #83d8fa;
+}
 .operatorKey {
   color: #fff;
   border: 2px solid #aaa;
   background-color: #72c740;
   border-radius: 10px;
 }
-.keys div:hover {
-  border: 2px solid #fff;
-}
-.keys div:active {
-  color: #83d8fa;
+.operatorKey:active {
+  color: #72c740;
   background-color: #fff;
-  border: 2px solid #83d8fa;
+  border: 2px solid #72c740;
 }
