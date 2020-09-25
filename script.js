@@ -85,6 +85,8 @@ function setupNumber(n) {
 function setupOperator(opIndex){
 
   return function(){
+    console.log(operators[opIndex]);
+    console.log("opIndex:" + opIndex);
     display.textContent += operators[opIndex];
     inputOperators.push(operators[opIndex]);
     operatorLevel.push(defaultOperatorLevel[opIndex] * operatorWeight);
@@ -115,21 +117,26 @@ function executeCalc(){
     
 
     operatorLevel.splice(calcIndex, 1);
-    operators.splice(calcIndex, 1);
+    inputOperators.splice(calcIndex, 1);
   }
 
 
+  numberIndex = 0;
+  formulaIndex = 0;
   let result = numbers[0];
+  formula = [result];
   
-  numbers = [];
+  
 
   return result;
 }
 
 
 // 二つの数の計算をします
-function calc(num1, num2, op){
+function calc(n1, n2, op){
   console.log("演算子:" + op);
+  let num1 = Number(n1);
+  let num2 = Number(n2);
   switch(op) {
     case '+':
       return num1 + num2;
@@ -156,8 +163,10 @@ function searchHeightOperatorLevel(){
 }
 
 function executeAndDisplay(){
-  let result = executeCalc();
-  display.textContent = String(result);
+  console.log("inputOperators:" + inputOperators);
+  console.log("numbers:" + numbers);
+  executeCalc();
+  displayFormula();
 }
 
 function allClear(){
@@ -221,11 +230,13 @@ keyLeftParenthesis.addEventListener('click', function(){
   formula.push('(');
   formulaIndex = formula.length;
   displayFormula();
-})
+});
 
 keyRightParenthesis.addEventListener('click', function(){
   operatorWeight += 2;
   formula.push(')');
   formulaIndex = formula.length;
   displayFormula();
-})
+});
+
+key00.addEventListener('click', setupNumber('00'));
