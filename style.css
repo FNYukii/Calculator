@@ -16,7 +16,6 @@ body {
 }
 .title:hover {
   color: #eee;
-  /* border-bottom: 2px solid #43beee; */
   padding-bottom: 1px;             /*文字とborder-botttomとの間隔を調整*/
 }
 .display {
