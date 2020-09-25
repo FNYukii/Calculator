@@ -184,26 +184,34 @@ function clear(){
   // 一つ処理を取り消します
 
   console.log(formula);
-  let current = formula.pop();
-  formulaIndex--;
-  if(current === '*' || current === '/'|| current === '-' || current === '+' ){
-    operatorLevel.pop();
-    inputOperators.pop();
-  }else if(current === '('){
-    operatorWeight -= 2;
-  }else if(current === ')'){
-    operatorWeight += 2;
-  }else{
-    numberIndex --;
-    numbers.pop();
+  if(formula.length > 0){
+    let current = formula.pop();
+    formulaIndex = formula.length;
+    if(current === '*' || current === '/'|| current === '-' || current === '+' ){
+      operatorLevel.pop();
+      inputOperators.pop();
+    }else if(current === '('){
+      operatorWeight -= 2;
+    }else if(current === ')'){
+      operatorWeight += 2;
+    }else{
+      numbers.pop();
+      if(numbers.length > 0){
+        numberIndex = numbers.length - 1;
+      }else{
+        numberIndex = 0;
+      }
+    }
+  
   }
-
+  
   displayFormula();
 }
 
 function displayFormula(){
 
   console.log(formula);
+  console.log("numberIndex:" + numberIndex);
   display.textContent = '';
 
   let text = ''
@@ -211,7 +219,11 @@ function displayFormula(){
     text = text + formula[i];
   }
   console.log(text);
-  display.textContent = text;
+  if(Number.isNaN(numbers[0])){
+    display.textContent = "Error:無効な計算式です。";
+  }else{
+    display.textContent = text;
+  }
 }
 
 for(let i = 0; i < numberKeys.length; i ++){
