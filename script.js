@@ -11,23 +11,23 @@ let sign = 1;          //演算子を表す。加算なら1、減算なら2を�
 //定数宣言
 const display = document.querySelector('.display');
 
-const key1 = document.querySelector('.key1');
-const key2 = document.querySelector('.key2');
-const key3 = document.querySelector('.key3');
-const key4 = document.querySelector('.key4');
-const key5 = document.querySelector('.key5');
-const key6 = document.querySelector('.key6');
-const key7 = document.querySelector('.key7');
-const key8 = document.querySelector('.key8');
-const key9 = document.querySelector('.key9'); 
-const key0 = document.querySelector('.key0');
-const key00 = document.querySelector('.key00');
+const key1 = document.getElementById('key1');
+const key2 = document.getElementById('key2');
+const key3 = document.getElementById('key3');
+const key4 = document.getElementById('key4');
+const key5 = document.getElementById('key5');
+const key6 = document.getElementById('key6');
+const key7 = document.getElementById('key7');
+const key8 = document.getElementById('key8');
+const key9 = document.getElementById('key9'); 
+const key0 = document.getElementById('key0');
+const key00 = document.getElementById('key00');
 
-const keyPlus = document.querySelector('.keyPlus');
-const keyMinus = document.querySelector('.keyMinus');
-const keyMultiply = document.querySelector('.keyMultiply');
-const keyDivide = document.querySelector('.keyDivide');
-const keyEqual = document.querySelector('.keyEqual');
+const keyPlus = document.getElementById('keyPlus');
+const keyMinus = document.getElementById('keyMinus');
+const keyMultiply = document.getElementById('keyMultiply');
+const keyDivide = document.getElementById('keyDivide');
+const keyEqual = document.getElementById('keyEqual');
 
 const numberKeys = [key0, key1, key2, key3, key4, key5, key6, key7, key8, key9];
 
