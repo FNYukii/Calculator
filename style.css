@@ -12,10 +12,10 @@ body {
   margin: 10px 200px;  /*タイトルが画面上部中央に来るようにmarginを調整*/
   font-size: 40px;
   text-decoration: none; /*リンクに標準で表示される下線を非表示*/
-  color: #43beee;
+  color: #fff;
 }
 .title:hover {
-  color: #6bc9ee;
+  color: #eee;
   /* border-bottom: 2px solid #43beee; */
   padding-bottom: 1px;             /*文字とborder-botttomとの間隔を調整*/
 }
@@ -34,24 +34,34 @@ body {
   flex-wrap: wrap;  /*keyたちを横並びで表示*/
   display: flex;    /*右端に達したら下の行に折り返して表示*/
 }
-.keys div{          /*keys内のdivを対象にスタイルを設定*/
+.specialKey,.numberKey,.operatorKey {
   width: 100px;
   height: 100px;
   margin: 10px;
-
+  text-align: center;  
+  line-height: 100px;
+  font-size: 70px;
+  cursor: pointer;
+}
+.specialKey {
+  color: #fff;
+  border: 2px solid #aaa;
+  background-color: #f8995a;
+  border-radius: 10px;
+}
+.numberKey {
   color: #fff;
   border: 2px solid #aaa;
   background-color: #83d8fa;
   border-radius: 10px;
-
-  text-align: center;  
-  line-height: 100px;
-  font-size: 70px;
-
-  cursor: pointer;
+}
+.operatorKey {
+  color: #fff;
+  border: 2px solid #aaa;
+  background-color: #72c740;
+  border-radius: 10px;
 }
 .keys div:hover {
-  /* color: lime; */
   border: 2px solid #fff;
 }
 .keys div:active {
