@@ -29,6 +29,9 @@ const keyMultiply = document.getElementById('keyMultiply');
 const keyDivide = document.getElementById('keyDivide');
 const keyEqual = document.getElementById('keyEqual');
 
+const keyAllClear = document.getElementById('keyAllClear');
+const keyClear = document.getElementById('keyClear');
+
 const numberKeys = [key0, key1, key2, key3, key4, key5, key6, key7, key8, key9];
 
 const operatorKeys = [keyPlus, keyMinus, keyMultiply, keyDivide];
