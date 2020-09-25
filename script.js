@@ -42,6 +42,9 @@ const operators = ['+', '-', '*', '/'];
 // 演算子の優先順位を表す
 const defaultOperatorLevel = [1, 1, 2, 2];
 
+let formula = [];
+let formulaIndex = 0;
+
 let numbers = [];
 let numberIndex = 0;
 
@@ -71,6 +74,7 @@ function setupNumber(n) {
       num += String(n)
     }
     numbers[numberIndex] = num;
+    formula[formulaIndex] = num;
   }
   
 }
@@ -81,7 +85,9 @@ function setupOperator(opIndex){
     display.textContent += operators[opIndex];
     inputOperators.push(operators[opIndex]);
     operatorLevel.push(defaultOperatorLevel[opIndex] * operatorWeight);
+    formula.push(operators[opIndex]);
     numberIndex ++;
+    formulaIndex = formula.length;
   }
 }
 
@@ -157,7 +163,43 @@ function allClear(){
   operatorLevel = [];
   operatorWeight = 1;
   inputOperators = [];
+  formula = [];
+  formulaIndex = 0;
   display.textContent = '';
+}
+
+function clear(){
+  // 一つ処理を取り消します
+
+  console.log(formula);
+  let current = formula.pop();
+  formulaIndex--;
+  if(current === '*' || current === '/'|| current === '-' || current === '+' ){
+    operatorLevel.pop();
+    inputOperators.pop();
+  }else if(current === '('){
+    operatorWeight -= 2;
+  }else if(current === ')'){
+    operatorWeight += 2;
+  }else{
+    numberIndex --;
+    numbers.pop();
+  }
+
+  displayFormula();
+}
+
+function displayFormula(){
+
+  console.log(formula);
+  display.textContent = '';
+
+  let text = ''
+  for(let i = 0; i < formula.length; i ++){
+    text = text + formula[i];
+  }
+  console.log(text);
+  display.textContent = text;
 }
 
 for(let i = 0; i < numberKeys.length; i ++){
@@ -170,3 +212,4 @@ for(let i = 0; i < operatorKeys.length; i ++){
 
 keyEqual.addEventListener('click', executeAndDisplay);
 keyAllClear.addEventListener('click', allClear);
+keyClear.addEventListener('click', clear);
