@@ -1,18 +1,22 @@
+body {
+  background-color: #eee;
+}
 .calculator {
-  max-width: 520px;          /* calculatorの横幅を設定。これでキーが綺麗に並ぶ*/
-  margin: 0 auto;            /*calculatorが画面の中央上部に表にされるように設定*/
-  background-color: gray;
+  max-width: 500px;          /* calculatorの横幅を設定。これでキーが綺麗に並ぶ*/
+  margin: 50px auto;            /*calculatorが画面の中央上部に表にされるように設定*/
+  background-color: #ccc;
+  border: 5px solid #aaa;
   border-radius: 10px;
 }
 .title {
-  margin: 10px 220px;  /*タイトルが画面上部中央に来るようにmarginを調整*/
+  margin: 10px 200px;  /*タイトルが画面上部中央に来るようにmarginを調整*/
   font-size: 40px;
   text-decoration: none; /*リンクに標準で表示される下線を非表示*/
-  color: skyblue;
+  color: #43beee;
 }
 .title:hover {
-  color: lime;
-  border-bottom: 2px solid lime;  /*borderの下部分だけを表示*/
+  color: #6bc9ee;
+  /* border-bottom: 2px solid #43beee; */
   padding-bottom: 1px;             /*文字とborder-botttomとの間隔を調整*/
 }
 
@@ -22,8 +26,8 @@
   margin: 10px auto;
 
   font-size: 30px;
-  color: white;
-  background-color: rgb(78, 78, 78);
+  color: #fff;
+  background-color: #777;
   border-radius: 10px;
 }
 .keys {
@@ -35,9 +39,9 @@
   height: 100px;
   margin: 10px;
 
-  color: skyblue;
-  border: 5px solid skyblue;
-  background-color: transparent;
+  color: #fff;
+  border: 2px solid #aaa;
+  background-color: #83d8fa;
   border-radius: 10px;
 
   text-align: center;  
@@ -47,10 +51,11 @@
   cursor: pointer;
 }
 .keys div:hover {
-  color: lime;
-  border: 5px solid lime;
+  /* color: lime; */
+  border: 2px solid #fff;
 }
 .keys div:active {
-  color: red;
-  border: 5px solid red;
+  color: #83d8fa;
+  background-color: #fff;
+  border: 2px solid #83d8fa;
 }
