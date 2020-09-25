@@ -32,6 +32,9 @@ const keyEqual = document.getElementById('keyEqual');
 const keyAllClear = document.getElementById('keyAllClear');
 const keyClear = document.getElementById('keyClear');
 
+const keyLeftParenthesis = document.getElementById('keyLeftParenthesis');
+const keyRightParenthesis = document.getElementById('keyRightParenthesis');
+
 const numberKeys = [key0, key1, key2, key3, key4, key5, key6, key7, key8, key9];
 
 const operatorKeys = [keyPlus, keyMinus, keyMultiply, keyDivide];
@@ -40,7 +43,7 @@ const operatorKeys = [keyPlus, keyMinus, keyMultiply, keyDivide];
 const operators = ['+', '-', '*', '/'];
 
 // 演算子の優先順位を表す
-const defaultOperatorLevel = [1, 1, 2, 2];
+const defaultOperatorLevel = [2, 2, 3, 3];
 
 let formula = [];
 let formulaIndex = 0;
@@ -213,3 +216,16 @@ for(let i = 0; i < operatorKeys.length; i ++){
 keyEqual.addEventListener('click', executeAndDisplay);
 keyAllClear.addEventListener('click', allClear);
 keyClear.addEventListener('click', clear);
+keyLeftParenthesis.addEventListener('click', function(){
+  operatorWeight += 2;
+  formula.push('(');
+  formulaIndex = formula.length;
+  displayFormula();
+})
+
+keyRightParenthesis.addEventListener('click', function(){
+  operatorWeight += 2;
+  formula.push(')');
+  formulaIndex = formula.length;
+  displayFormula();
+})
