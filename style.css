@@ -1,27 +1,33 @@
+html {
+  height: 100%;
+}
 body {
   background-color: #eee;
+  height: 100%;
 }
 .calculator {
-  max-width: 500px;          /* calculatorの横幅を設定。これでキーが綺麗に並ぶ*/
+  max-width: 376px;          /* calculatorの横幅を設定。これでキーが綺麗に並ぶ*/
   margin: 50px auto;            /*calculatorが画面の中央上部に表にされるように設定*/
   background-color: #ccc;
   border: 5px solid #aaa;
   border-radius: 10px;
 }
-.title {
-  margin: 10px 200px;  /*タイトルが画面上部中央に来るようにmarginを調整*/
+/*
+.logo {
+  margin: 10px 200px;
   font-size: 40px;
-  text-decoration: none; /*リンクに標準で表示される下線を非表示*/
+  text-decoration: none;
   color: #fff;
 }
-.title:hover {
+.logo:hover {
   color: #eee;
-  padding-bottom: 1px;             /*文字とborder-botttomとの間隔を調整*/
+  padding-bottom: 1px;
 }
+*/
 .display {
-  width: 430px;
+  width: 320px;
   height: 40px;
-  margin: 10px auto;
+  margin: 20px auto;
 
   font-size: 30px;
   color: #fff;
@@ -33,12 +39,12 @@ body {
   display: flex;    /*右端に達したら下の行に折り返して表示*/
 }
 .specialKey,.numberKey,.operatorKey {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   margin: 10px;
   text-align: center;  
-  line-height: 100px;
-  font-size: 70px;
+  line-height: 70px;
+  font-size: 50px;
   cursor: pointer;
 }
 .specialKey:hover,.numberKey:hover,.operatorKey:hover {
