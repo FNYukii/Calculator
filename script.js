@@ -29,6 +29,12 @@ const keyMultiply = document.getElementById('keyMultiply');
 const keyDivide = document.getElementById('keyDivide');
 const keyEqual = document.getElementById('keyEqual');
 
+const keyAllClear = document.getElementById('keyAllClear');
+const keyClear = document.getElementById('keyClear');
+
+const keyLeftParenthesis = document.getElementById('keyLeftParenthesis');
+const keyRightParenthesis = document.getElementById('keyRightParenthesis');
+
 const numberKeys = [key0, key1, key2, key3, key4, key5, key6, key7, key8, key9];
 
 const operatorKeys = [keyPlus, keyMinus, keyMultiply, keyDivide];
@@ -37,7 +43,10 @@ const operatorKeys = [keyPlus, keyMinus, keyMultiply, keyDivide];
 const operators = ['+', '-', '*', '/'];
 
 // 演算子の優先順位を表す
-const defaultOperatorLevel = [1, 1, 2, 2];
+const defaultOperatorLevel = [2, 2, 3, 3];
+
+let formula = [];
+let formulaIndex = 0;
 
 let numbers = [];
 let numberIndex = 0;
@@ -68,6 +77,7 @@ function setupNumber(n) {
       num += String(n)
     }
     numbers[numberIndex] = num;
+    formula[formulaIndex] = num;
   }
   
 }
@@ -75,10 +85,14 @@ function setupNumber(n) {
 function setupOperator(opIndex){
 
   return function(){
+    console.log(operators[opIndex]);
+    console.log("opIndex:" + opIndex);
     display.textContent += operators[opIndex];
     inputOperators.push(operators[opIndex]);
     operatorLevel.push(defaultOperatorLevel[opIndex] * operatorWeight);
+    formula.push(operators[opIndex]);
     numberIndex ++;
+    formulaIndex = formula.length;
   }
 }
 
@@ -103,21 +117,26 @@ function executeCalc(){
     
 
     operatorLevel.splice(calcIndex, 1);
-    operators.splice(calcIndex, 1);
+    inputOperators.splice(calcIndex, 1);
   }
 
 
+  numberIndex = 0;
+  formulaIndex = 0;
   let result = numbers[0];
+  formula = [result];
   
-  numbers = [];
+  
 
   return result;
 }
 
 
 // 二つの数の計算をします
-function calc(num1, num2, op){
+function calc(n1, n2, op){
   console.log("演算子:" + op);
+  let num1 = Number(n1);
+  let num2 = Number(n2);
   switch(op) {
     case '+':
       return num1 + num2;
@@ -144,8 +163,67 @@ function searchHeightOperatorLevel(){
 }
 
 function executeAndDisplay(){
-  let result = executeCalc();
-  display.textContent = String(result);
+  console.log("inputOperators:" + inputOperators);
+  console.log("numbers:" + numbers);
+  executeCalc();
+  displayFormula();
+}
+
+function allClear(){
+  numbers = [];
+  numberIndex = 0;
+  operatorLevel = [];
+  operatorWeight = 1;
+  inputOperators = [];
+  formula = [];
+  formulaIndex = 0;
+  display.textContent = '';
+}
+
+function clear(){
+  // 一つ処理を取り消します
+
+  console.log(formula);
+  if(formula.length > 0){
+    let current = formula.pop();
+    formulaIndex = formula.length;
+    if(current === '*' || current === '/'|| current === '-' || current === '+' ){
+      operatorLevel.pop();
+      inputOperators.pop();
+    }else if(current === '('){
+      operatorWeight -= 2;
+    }else if(current === ')'){
+      operatorWeight += 2;
+    }else{
+      numbers.pop();
+      if(numbers.length > 0){
+        numberIndex = numbers.length - 1;
+      }else{
+        numberIndex = 0;
+      }
+    }
+  
+  }
+  
+  displayFormula();
+}
+
+function displayFormula(){
+
+  console.log(formula);
+  console.log("numberIndex:" + numberIndex);
+  display.textContent = '';
+
+  let text = ''
+  for(let i = 0; i < formula.length; i ++){
+    text = text + formula[i];
+  }
+  console.log(text);
+  if(Number.isNaN(numbers[0])){
+    display.textContent = "Error:無効な計算式です。";
+  }else{
+    display.textContent = text;
+  }
 }
 
 for(let i = 0; i < numberKeys.length; i ++){
@@ -157,3 +235,20 @@ for(let i = 0; i < operatorKeys.length; i ++){
 }
 
 keyEqual.addEventListener('click', executeAndDisplay);
+keyAllClear.addEventListener('click', allClear);
+keyClear.addEventListener('click', clear);
+keyLeftParenthesis.addEventListener('click', function(){
+  operatorWeight += 2;
+  formula.push('(');
+  formulaIndex = formula.length;
+  displayFormula();
+});
+
+keyRightParenthesis.addEventListener('click', function(){
+  operatorWeight += 2;
+  formula.push(')');
+  formulaIndex = formula.length;
+  displayFormula();
+});
+
+key00.addEventListener('click', setupNumber('00'));
